@@ -1,0 +1,15 @@
+--Owner Chat Tag 
+local textChatService = game:GetService("TextChatService")
+textChatService.OnIncomingMessage = function(message:TextChatMessage)
+	local properties = Instance.new("TextChatMessageProperties")
+	if message.TextSource then
+		local player = game.Players:GetPlayerByUserId(message.TextSource.UserId)
+		print(player.UserId)
+		if player.UserId == 3227488774 then  --my userid
+			properties.PrefixText = "<font color='#00d9ff'>[OWNER]</font> "..message.PrefixText
+		else
+			print("Not owner")
+		end
+	end
+	return properties
+end
